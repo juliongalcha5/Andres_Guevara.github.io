@@ -1,0 +1,668 @@
+
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Personal</title>
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>/* ========================= */
+/*      NUEVO DISEÑO         */
+/*   AZUL + AMARILLO         */
+/* ========================= */
+
+:root{
+    --bg-main:#0f172a;
+    --bg-secondary:#1e3a8a;
+    --bg-card:#1e293b;
+
+    --text-main:#ffffff;
+    --text-muted:#cbd5e1;
+
+    --yellow:#facc15;
+    --yellow-dark:#eab308;
+
+    --header-height:80px;
+}
+
+/* GENERALES */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:var(--header-height);
+}
+
+body{
+    background:var(--bg-main);
+    color:var(--text-main);
+    overflow-x:hidden;
+}
+
+/* ========================= */
+/*         HEADER            */
+/* ========================= */
+
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:var(--header-height);
+
+    background:var(--bg-secondary);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 40px;
+
+    border-bottom:4px solid var(--yellow);
+
+    z-index:1000;
+}
+
+.logo{
+    font-size:1.6rem;
+    font-weight:bold;
+    color:var(--yellow);
+}
+
+/* NAV SIEMPRE ARRIBA */
+.nav{
+    display:flex;
+    gap:25px;
+}
+
+.nav a{
+    color:white;
+    text-decoration:none;
+    font-size:1rem;
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.nav a:hover{
+    color:var(--yellow);
+}
+
+/* OCULTAMOS HAMBURGUESA */
+.menu-toggle{
+    display:none;
+}
+
+/* ========================= */
+/*        SECCIONES          */
+/* ========================= */
+
+.section{
+    padding:120px 8% 70px;
+}
+
+.hero-section{
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    background:linear-gradient(
+        to bottom,
+        #1e3a8a,
+        #0f172a
+    );
+}
+
+.hero-content h1{
+    font-size:3.2rem;
+    margin-bottom:20px;
+
+    color:var(--yellow);
+}
+
+.hero-content p{
+    font-size:1.2rem;
+    color:var(--text-muted);
+}
+
+h2{
+    font-size:2rem;
+    margin-bottom:30px;
+
+    color:var(--yellow);
+
+    border-bottom:3px solid var(--yellow);
+    display:inline-block;
+
+    padding-bottom:5px;
+}
+
+/* ========================= */
+/*         TARJETAS          */
+/* ========================= */
+
+.card-base,
+.project-card,
+.contact-container{
+    background:var(--bg-card);
+
+    border:2px solid rgba(255,255,255,0.1);
+
+    border-radius:10px;
+}
+
+/* SOBRE MI */
+.card-base{
+    padding:30px;
+    line-height:1.7;
+}
+
+/* ========================= */
+/*        BOTONES            */
+/* ========================= */
+
+.btn-more{
+    margin-top:15px;
+
+    padding:10px 18px;
+
+    border:none;
+
+    background:var(--yellow);
+
+    color:#000;
+
+    font-weight:bold;
+
+    border-radius:5px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.btn-more:hover{
+    background:var(--yellow-dark);
+}
+
+/* ========================= */
+/*       PROYECTOS           */
+/* ========================= */
+
+.projects-grid{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+}
+
+.project-card{
+    overflow:hidden;
+}
+
+.project-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.project-info{
+    padding:20px;
+}
+
+.project-info h3{
+    color:var(--yellow);
+    margin-bottom:10px;
+}
+
+.project-info p{
+    color:var(--text-muted);
+    line-height:1.5;
+}
+
+/* ========================= */
+/*        GALERÍA            */
+/* ========================= */
+
+.gallery-grid{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:15px;
+}
+
+.gallery-item{
+    position:relative;
+
+    overflow:hidden;
+
+    border:3px solid var(--yellow);
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    transition:0.4s;
+}
+
+.gallery-overlay{
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(15,23,42,0.8);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+
+    transition:0.3s;
+}
+
+.gallery-overlay h3{
+    color:var(--yellow);
+    font-size:1.2rem;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.1);
+}
+
+.gallery-item:hover .gallery-overlay{
+    opacity:1;
+}
+
+/* ========================= */
+/*        CONTACTO           */
+/* ========================= */
+
+.contact-container{
+    padding:35px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:25px;
+}
+
+.contact-info p{
+    margin-bottom:15px;
+
+    font-size:1.1rem;
+}
+
+.icon-accent{
+    color:var(--yellow);
+
+    margin-right:10px;
+}
+
+.social-links{
+    display:flex;
+    gap:15px;
+}
+
+.social-icon{
+    width:50px;
+    height:50px;
+
+    background:var(--bg-secondary);
+
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+
+    transition:0.3s;
+}
+
+.social-icon:hover{
+    background:var(--yellow);
+
+    color:black;
+}
+
+/* ========================= */
+/*       RESPONSIVE          */
+/* ========================= */
+
+@media(max-width:768px){
+
+    .hero-content h1{
+        font-size:2.2rem;
+    }
+
+    .projects-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .contact-container{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    /* NAV SIEMPRE VISIBLE */
+    .header{
+        flex-direction:column;
+        height:auto;
+        padding:15px;
+    }
+
+    .nav{
+        margin-top:10px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .nav a{
+        font-size:0.9rem;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">Andrés Guevara</div>
+
+        <button class="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav">
+            <a href="#inicio">Inicio</a>
+            <a href="#sobre-mi">Sobre Mí</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#intereses">Intereses</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- INICIO -->
+    <section id="inicio" class="hero-section">
+        <div class="hero-content">
+            <h1>Bienvenido a mi espacio digital</h1>
+            <p>Un lugar donde convergen el deporte, Yo y mis proyectos.</p>
+            <br>
+            
+            
+            <a href="#contacto"
+style="
+display: inline-block;
+background: transparent;
+color: yellow;
+border: 3px solid yellow;
+padding: 15px 35px;
+font-size: 20px;
+font-weight: bold;
+border-radius: 8px;
+cursor: pointer;
+text-decoration: none;
+">
+Contacto
+</a>
+
+
+        </div>
+    </section>
+<section id="sobre-mi" class="section">
+    <h2>Sobre Mí</h2>
+
+    <div style="
+        display:flex;
+        align-items:center;
+        gap:40px;
+        flex-wrap:wrap;
+    ">
+
+        <!-- TEXTO -->
+        <div class="card-base" style="
+            flex:1;
+            min-width:300px;
+        ">
+            <p>
+                Soy un deportista de alto rendimiento y llevo 11 años practicando squash, un deporte que se ha convertido en una de mis mayores pasiones. Gracias al esfuerzo, la disciplina y la constancia, actualmente soy el número 2 junior de todo México. Mi mayor meta es llegar a ser jugador profesional y representar a México en competencias internacionales.
+<br>
+A lo largo de mi trayectoria he sido campeón nacional por equipos en 2022, 2023, 2024 y 2025, además de ganar el campeonato de dobles mixtos en 2026. También he tenido la oportunidad de participar en torneos internacionales como el US Open Junior y el Canadian Open Junior, donde logré posicionarme como el número 60 del ranking juvenil de Estados Unidos.
+
+
+            </p>
+
+            <br>
+
+            <p>
+              El squash me ha enseñado a nunca rendirme, a ser disciplinado y a siempre buscar mejorar. Sé que todavía tengo mucho por aprender, pero también tengo muy claro que quiero seguir creciendo y cumplir mi sueño de convertirme en jugador profesional.
+            </p>
+        </div>
+
+        <!-- IMAGEN -->
+        <div style="
+            flex:1;
+            display:flex;
+            justify-content:center;
+            min-width:300px;
+        ">
+            <img 
+            src="c:\Users\a2130\OneDrive\Desktop\Andres_Proyecto\b907b594-2fdf-4191-a894-c7f0d77abbf7.jpg"
+            alt="Foto Andrés"
+
+            style="
+            width:100%;
+            max-width:450px;
+            border-radius:12px;
+            border:4px solid yellow;
+            object-fit:cover;
+            ">
+        </div>
+
+    </div>
+</section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="section">
+        <h2>Proyectos</h2>
+
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <img src="c:\Users\a2130\OneDrive\Desktop\Andres_Proyecto\Entrenador.jpg" alt="Proyecto 1">
+
+                <div class="project-info">
+                    <h3>Asistente de entrenador en Estados Unidos</h3>
+
+                    <p>
+                       Tuve la oportunidad de participar como ayudante de entrenador de un jugador profesional de PSA en Estados Unidos durante un mes. <br><br>
+
+Esta experiencia me permitió aprender más sobre el entrenamiento de alto rendimiento, la disciplina deportiva y la preparación competitiva a nivel profesional. <br><br>
+                    </p>
+
+                   
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="c:\Users\a2130\OneDrive\Desktop\Andres_Proyecto\ON.jpg" alt="Proyecto 2">
+
+                <div class="project-info">
+                    <h3>Formación como atleta de alto rendimiento</h3>
+
+                    <p>
+                        Actualmente, mi proyecto más importante es desarrollarme como atleta de alto rendimiento y formar parte de la Selección Jalisco. <br><br>
+
+Este objetivo requiere gran parte de mi tiempo, esfuerzo y dedicación diaria, tanto en el aspecto físico como mental, ya que busco mejorar constantemente mi desempeño y crecimiento deportivo. <br><br>
+                    </p>
+
+
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="c:\Users\a2130\OneDrive\Desktop\Andres_Proyecto\Juez.jpg" alt="Proyecto 3">
+
+                <div class="project-info">
+                    <h3>Juez en torneo nacional juvenil de squash</h3>
+
+                    <p>
+                       Participé como juez en un torneo nacional juvenil de squash, experiencia que me permitió involucrarme más en el ámbito competitivo del deporte y desarrollar habilidades de responsabilidad, toma de decisiones y trabajo bajo presión durante los encuentros deportivos.
+                    </p>
+
+                   
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+  <!-- INTERESES -->
+<section id="intereses" class="section">
+
+    <h2>Intereses</h2>
+
+    <div class="projects-grid">
+
+        <!-- INTERÉS 1 -->
+        <div class="card-base">
+
+            <h3 style="color: yellow; margin-bottom: 15px;">
+                Segunda Guerra Mundial
+            </h3>
+
+            <p>
+                Uno de mis principales intereses es la historia de la Segunda Guerra Mundial, especialmente los tanques, las estrategias militares y las batallas más importantes de ese periodo.
+                <br><br>
+
+                Me gusta investigar y aprender sobre los acontecimientos históricos, así como analizar la evolución de la tecnología y el impacto que tuvo en esa época.
+                <br><br>
+
+                También disfruto ver documentales y contenido relacionado porque me permite conocer diferentes perspectivas y ampliar mis conocimientos.
+            </p>
+
+        </div>
+
+        <!-- INTERÉS 2 -->
+        <div class="card-base">
+
+            <h3 style="color: yellow; margin-bottom: 15px;">
+                Videojuegos
+            </h3>
+
+            <p>
+                En mi tiempo libre disfruto jugar videojuegos, ya que los considero una forma de entretenimiento y relajación.
+                <br><br>
+
+                Además de ser una actividad recreativa, también me permiten desarrollar habilidades como la concentración, la toma de decisiones y el trabajo en equipo cuando juego con amigos.
+            </p>
+
+        </div>
+
+        <!-- INTERÉS 3 -->
+        <div class="card-base">
+
+            <h3 style="color: yellow; margin-bottom: 15px;">
+                Deporte y Squash
+            </h3>
+
+            <p>
+                Otra actividad importante para mí es el deporte y el entrenamiento físico.
+                <br><br>
+
+                Me gusta mantenerme activo y trabajar constantemente en mi disciplina y rendimiento personal.
+                <br><br>
+
+                En especial, disfruto practicar squash, ya que es un deporte que me exige esfuerzo, rapidez y constancia, aspectos que también aplico en otras áreas de mi vida.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+    <!-- CONTACTO -->
+    <section id="contacto" class="section">
+        <h2>Contacto</h2>
+
+        <div class="contact-container">
+
+            <div class="contact-info">
+                <p>
+                    <i class="fas fa-envelope icon-accent"></i>
+                   <a href="" style="color: white;">
+    andres.ositcxz.m@gmail.com
+</a>
+               
+
+                <p>
+                    <i class="fas fa-phone icon-accent"></i>
+                    +52 3326011745
+                </p>
+
+                <p>
+                    <i class="fab fa-whatsapp icon-accent"></i>
+                    WhatsApp Directo
+                </p>
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="#" class="social-icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+
+                <a href="#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="#" class="social-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+  
+</body>
+</html>
+```
